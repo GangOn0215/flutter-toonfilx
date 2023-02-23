@@ -55,7 +55,7 @@ class App extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 120,
+                height: 60,
               ),
               Text(
                 'Total Balance',
@@ -84,14 +84,85 @@ class App extends StatelessWidget {
                   Button(
                     text: 'Transfer',
                     fontColor: Colors.black,
-                    backgroundColor: Colors.amber,
+                    backgroundColor: Color(0xFFE75480),
                   ),
                   Button(
                     text: 'Request',
-                    fontColor: Colors.white,
+                    fontColor: Color(0xFFE75480),
                     backgroundColor: Color(0xFF1F2123),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Wallets',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    'View All',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.5),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: const Color(0xFF1F2123),
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Euro',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '6 482',
+                                style: TextStyle(
+                                    color: Color(0xFFE75480), fontSize: 15),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'EUR',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               )
             ],
           ),
