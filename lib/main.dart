@@ -17,24 +17,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xFF131313),
-        // backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: Text('Coxe'),
-          backgroundColor: Colors.deepPurple,
-          shadowColor: Color.fromRGBO(255, 178, 178, 1),
-          elevation: 5,
-        ),
+        backgroundColor: Color(0xFF181818),
         body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             children: [
               SizedBox(
-                  // height: 10,
-                  ),
+                height: 80,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -42,17 +32,18 @@ class App extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'Hey, Coxe',
+                        'Hey, Selena',
                         style: TextStyle(
-                            color: Color.fromRGBO(255, 178, 178, 1),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800),
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Text(
-                        'sleep',
+                        'Welcome, back',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.5),
-                          fontSize: 14,
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 16,
                         ),
                       ),
                     ],
