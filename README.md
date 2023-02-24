@@ -17,4 +17,6 @@ A new Flutter project.
   - #3.1 Developer Tools
 
 - 2023-02-23
-  
+  - #3.2 Buttons Section
+  - #3.5 Reusable Widgets
+  - #3.6 Cards
