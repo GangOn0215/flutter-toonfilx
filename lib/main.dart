@@ -31,7 +31,7 @@ class _RoutePageState extends State<RoutePage> {
   final _navigatorKeys = {
     TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.wallets: GlobalKey<NavigatorState>(),
-    TabItem.state: GlobalKey<NavigatorState>(),
+    TabItem.study: GlobalKey<NavigatorState>(),
   };
 
   void _selectTab(TabItem tabItem) {
@@ -66,7 +66,7 @@ class _RoutePageState extends State<RoutePage> {
           children: <Widget>[
             _buildOffstageNavigator(TabItem.home),
             _buildOffstageNavigator(TabItem.wallets),
-            _buildOffstageNavigator(TabItem.state),
+            _buildOffstageNavigator(TabItem.study),
           ],
         ),
         bottomNavigationBar: BottomNavigation(

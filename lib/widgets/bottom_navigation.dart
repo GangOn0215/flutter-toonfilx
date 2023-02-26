@@ -25,8 +25,8 @@ class BottomNavigation extends StatelessWidget {
           label: 'Wallets',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.star_border),
-          label: 'State',
+          icon: Icon(Icons.my_library_books),
+          label: 'Study',
         ),
       ],
       onTap: (index) => onSelectTab(
