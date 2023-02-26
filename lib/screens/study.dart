@@ -21,6 +21,10 @@ class Study extends StatelessWidget {
               text: 'BuildContext',
               builder: (context) => const StudyBuildContext(),
             ),
+            ButtonNav(
+              text: 'Widget Lifecycle',
+              builder: (context) => const StudyWidgetLifeCycle(),
+            ),
           ],
         ),
       ),
@@ -132,10 +136,89 @@ class MyLargeTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'My Large Title',
+      'Build Context',
       style: TextStyle(
         fontSize: 30,
         color: Theme.of(context).textTheme.titleLarge!.color,
+      ),
+    );
+  }
+}
+
+class StudyWidgetLifeCycle extends StatefulWidget {
+  const StudyWidgetLifeCycle({super.key});
+
+  @override
+  State<StudyWidgetLifeCycle> createState() => _StudyWidgetLifeCycleState();
+}
+
+class _StudyWidgetLifeCycleState extends State<StudyWidgetLifeCycle> {
+  bool isLive = true;
+
+  void toggleLive() {
+    setState(() {
+      isLive = !isLive;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xfff4eddb),
+      appBar: _buildAppBar(
+        title: 'Widget LifeCycle',
+        context: context,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            isLive ? const CycleLife() : const Text(''),
+            const SizedBox(
+              height: 20,
+            ),
+            IconButton(
+              onPressed: toggleLive,
+              icon: const Icon(Icons.delete),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CycleLife extends StatefulWidget {
+  const CycleLife({
+    super.key,
+  });
+
+  @override
+  State<CycleLife> createState() => _CycleLifeState();
+}
+
+class _CycleLifeState extends State<CycleLife> {
+  @override
+  void initState() {
+    super.initState();
+
+    print('init');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    print('dispose');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('build');
+    return const Text(
+      'Widget LifeCycle',
+      style: TextStyle(
+        fontSize: 30,
       ),
     );
   }
