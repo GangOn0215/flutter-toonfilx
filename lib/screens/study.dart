@@ -8,6 +8,7 @@ class Study extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(title: 'Study', context: context),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +107,36 @@ class _StudyBuildContextState extends State<StudyBuildContext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(title: 'Build Context', context: context),
+      backgroundColor: const Color(0xfff4eddb),
+      appBar: _buildAppBar(
+        title: 'Build Context',
+        context: context,
+      ),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyLargeTitle(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyLargeTitle extends StatelessWidget {
+  const MyLargeTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'My Large Title',
+      style: TextStyle(
+        fontSize: 30,
+        color: Theme.of(context).textTheme.titleLarge!.color,
+      ),
     );
   }
 }
@@ -120,10 +150,15 @@ PreferredSizeWidget _buildAppBar({
     centerTitle: true,
     title: Text(
       title,
+      style: const TextStyle(
+        color: Color(0xFFE75480),
+      ),
     ),
     leading: IconButton(
       icon: const Icon(Icons.arrow_back_ios_new_outlined),
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: () => {
+        if (Navigator.canPop(context)) {Navigator.of(context).pop()}
+      },
     ),
   );
 }

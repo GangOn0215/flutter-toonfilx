@@ -12,8 +12,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: RoutePage(),
+    return MaterialApp(
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.amber,
+          ),
+        ),
+      ),
+      home: const RoutePage(),
     );
   }
 }
@@ -37,9 +44,13 @@ class _RoutePageState extends State<RoutePage> {
   void _selectTab(TabItem tabItem) {
     if (tabItem == _currentTab) {
       /// 네비게이션 탭을 누르면, 해당 네비의 첫 스크린으로 이동!
-      _navigatorKeys[tabItem]!.currentState!.popUntil((route) => route.isFirst);
+      _navigatorKeys[tabItem]!.currentState!.popUntil(
+            (route) => route.isFirst,
+          );
     } else {
-      setState(() => _currentTab = tabItem);
+      setState(
+        () => _currentTab = tabItem,
+      );
     }
   }
 
