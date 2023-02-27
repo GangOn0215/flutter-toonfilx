@@ -14,8 +14,9 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   final _textHeadline1 = const Color(0xFF232B55);
   final _cardColor = const Color(0xFFF4EDDB);
 
-  int totalSeconds = 1500;
-  bool isRunning = false;
+  int totalSeconds = 1500; // 총시간
+  int totalPomodoro = 0;
+  bool isRunning = false; // 돌아가는 중?
   late Timer timer;
 
   void onTick(Timer timer) {
@@ -40,6 +41,14 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
 
     setState(() {
       isRunning = false;
+    });
+  }
+
+  void onReset() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+      totalSeconds = 1500;
     });
   }
 
@@ -95,22 +104,35 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Pomodoro',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: _textHeadline1,
-                          ),
-                        ),
-                        Text(
-                          '0',
-                          style: TextStyle(
-                            fontSize: 48,
-                            fontWeight: FontWeight.w600,
-                            color: _textHeadline1,
-                          ),
-                        ),
+                        isRunning
+                            ? IconButton(
+                                onPressed: onReset,
+                                iconSize: 50,
+                                icon: Icon(
+                                  Icons.restore,
+                                  color: _textHeadline1,
+                                ),
+                              )
+                            : Column(
+                                children: [
+                                  Text(
+                                    'Pomodoro',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: _textHeadline1,
+                                    ),
+                                  ),
+                                  Text(
+                                    '$totalPomodoro',
+                                    style: TextStyle(
+                                      fontSize: 48,
+                                      fontWeight: FontWeight.w600,
+                                      color: _textHeadline1,
+                                    ),
+                                  ),
+                                ],
+                              )
                       ],
                     ),
                   ),
