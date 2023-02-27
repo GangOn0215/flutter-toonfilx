@@ -9,6 +9,7 @@ A new Flutter project.
   4. 코드 한번 읽은 뒤 오늘 했던거 다 지움
   5. 새로 만들어 봄
 
+#0.n : my study
 
 ## 📑 TIL
 
@@ -26,7 +27,7 @@ A new Flutter project.
   - #3.8 Reusable Cards
   - #3.9 Code Challenge
   
-- 🌸 2023-02-24
+- 🌸 2023-02-25
   - #0.0 [Clone Coding](https://github.com/GangOn0215/flutter-clone-coding.git)
   
 - 🌸 2023-02-26
@@ -35,3 +36,9 @@ A new Flutter project.
   - #4.1 setState
   - #4.3 BuildContext 
   - #4.4 Widget Lifecycle
+  
+- 🌸 2023-02-26
+  - #5.0 Pomodoro App User Interface
+  - #5.1 Timer
+  - #5.2 pause play
+  - #0.3 Implement Reset Button, Function onResetPressed 
