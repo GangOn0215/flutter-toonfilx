@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class PomodoroScreen extends StatefulWidget {
@@ -9,10 +11,24 @@ class PomodoroScreen extends StatefulWidget {
 
 class _PomodoroScreenState extends State<PomodoroScreen> {
   final _backgroundColor = const Color(0xFFE7626C);
-
   final _textHeadline1 = const Color(0xFF232B55);
-
   final _cardColor = const Color(0xFFF4EDDB);
+
+  int totalSeconds = 1500;
+  late Timer timer;
+
+  void onTick(Timer timer) {
+    setState(() {
+      totalSeconds -= 1;
+    });
+  }
+
+  void onStartPressed() {
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      onTick,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +41,12 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                '25:00',
+                '$totalSeconds',
                 style: TextStyle(
-                    color: _cardColor,
-                    fontSize: 89,
-                    fontWeight: FontWeight.w600),
+                  color: _cardColor,
+                  fontSize: 89,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
@@ -43,42 +60,47 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
                   Icons.play_circle_outline_outlined,
                   color: _cardColor,
                 ),
-                onPressed: () {},
+                onPressed: onStartPressed,
               ),
             ),
           ),
           Flexible(
             flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: _cardColor,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Pomodoro',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: _textHeadline1,
-                        ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: _cardColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
                       ),
-                      Text(
-                        '0',
-                        style: TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.w600,
-                          color: _textHeadline1,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Pomodoro',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: _textHeadline1,
+                          ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          '0',
+                          style: TextStyle(
+                            fontSize: 48,
+                            fontWeight: FontWeight.w600,
+                            color: _textHeadline1,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
