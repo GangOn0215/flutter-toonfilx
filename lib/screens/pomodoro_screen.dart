@@ -15,6 +15,7 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   final _cardColor = const Color(0xFFF4EDDB);
 
   int totalSeconds = 1500;
+  bool isRunning = false;
   late Timer timer;
 
   void onTick(Timer timer) {
@@ -28,6 +29,18 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
       const Duration(seconds: 1),
       onTick,
     );
+
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  void onPausePressed() {
+    timer.cancel();
+
+    setState(() {
+      isRunning = false;
+    });
   }
 
   @override
@@ -57,10 +70,12 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
               child: IconButton(
                 iconSize: 120,
                 icon: Icon(
-                  Icons.play_circle_outline_outlined,
+                  isRunning
+                      ? Icons.pause_circle_filled_outlined
+                      : Icons.play_circle_outline_outlined,
                   color: _cardColor,
                 ),
-                onPressed: onStartPressed,
+                onPressed: isRunning ? onPausePressed : onStartPressed,
               ),
             ),
           ),
