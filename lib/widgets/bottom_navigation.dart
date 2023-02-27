@@ -28,6 +28,10 @@ class BottomNavigation extends StatelessWidget {
           icon: Icon(Icons.my_library_books),
           label: 'Study',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.timelapse_rounded),
+          label: 'Pomodoro',
+        ),
       ],
       onTap: (index) => onSelectTab(
         TabItem.values[index],

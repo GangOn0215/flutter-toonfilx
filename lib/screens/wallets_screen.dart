@@ -2,8 +2,8 @@ import 'package:toonflix/widgets/button.dart';
 import 'package:toonflix/widgets/currency_card.dart';
 import 'package:flutter/material.dart';
 
-class Wallets extends StatelessWidget {
-  const Wallets({super.key});
+class WalletsScreen extends StatelessWidget {
+  const WalletsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

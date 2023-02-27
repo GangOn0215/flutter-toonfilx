@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:toonflix/widgets/study/button_nav.dart';
 import 'package:toonflix/widgets/study/state_button_small.dart';
 
-class Study extends StatelessWidget {
-  const Study({super.key});
+class StudyScreen extends StatelessWidget {
+  const StudyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -229,16 +229,14 @@ PreferredSizeWidget _buildAppBar({
   required BuildContext context,
 }) {
   return AppBar(
-    backgroundColor: Colors.black.withOpacity(0.7),
     centerTitle: true,
     title: Text(
       title,
-      style: const TextStyle(
-        color: Color(0xFFE75480),
-      ),
     ),
     leading: IconButton(
-      icon: const Icon(Icons.arrow_back_ios_new_outlined),
+      icon: Icon(Navigator.canPop(context)
+          ? Icons.arrow_back_ios_new_outlined
+          : Icons.star_rounded),
       onPressed: () => {
         if (Navigator.canPop(context)) {Navigator.of(context).pop()}
       },

@@ -4,11 +4,14 @@ import 'package:toonflix/utils/tab_navigator.dart';
 import 'package:toonflix/widgets/bottom_navigation.dart';
 
 void main() {
-  runApp(const App());
+  runApp(App());
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final _commonBackgroundColor = Colors.black.withOpacity(0.7);
+  final _commonFontColor = const Color(0xFFE75480);
+
+  App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,18 @@ class App extends StatelessWidget {
         textTheme: const TextTheme(
           titleLarge: TextStyle(
             color: Colors.amber,
+          ),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: _commonBackgroundColor,
+          unselectedItemColor: Colors.white,
+          selectedItemColor: _commonFontColor,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: _commonBackgroundColor,
+          titleTextStyle: TextStyle(
+            color: _commonFontColor,
+            fontSize: 20,
           ),
         ),
       ),
@@ -39,11 +54,12 @@ class _RoutePageState extends State<RoutePage> {
     TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.wallets: GlobalKey<NavigatorState>(),
     TabItem.study: GlobalKey<NavigatorState>(),
+    TabItem.pomodoro: GlobalKey<NavigatorState>(),
   };
 
   void _selectTab(TabItem tabItem) {
     if (tabItem == _currentTab) {
-      /// 네비게이션 탭을 누르면, 해당 네비의 첫 스크린으로 이동!
+      // 네비게이션 탭을 누르면, 해당 네비의 첫 스크린으로 이동!
       _navigatorKeys[tabItem]!.currentState!.popUntil(
             (route) => route.isFirst,
           );
@@ -78,6 +94,7 @@ class _RoutePageState extends State<RoutePage> {
             _buildOffstageNavigator(TabItem.home),
             _buildOffstageNavigator(TabItem.wallets),
             _buildOffstageNavigator(TabItem.study),
+            _buildOffstageNavigator(TabItem.pomodoro),
           ],
         ),
         bottomNavigationBar: BottomNavigation(
