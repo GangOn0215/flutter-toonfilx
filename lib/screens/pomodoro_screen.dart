@@ -10,18 +10,61 @@ class PomodoroScreen extends StatefulWidget {
 }
 
 class _PomodoroScreenState extends State<PomodoroScreen> {
-  final _backgroundColor = const Color(0xFFE7626C);
-  final _textHeadline1 = const Color(0xFF232B55);
-  final _cardColor = const Color(0xFFF4EDDB);
+  final _backgroundColor = const Color(0XFFF77293);
+  final _cardColor = const Color(0XFFFEF0F4);
+  final _mainBlackColor = const Color(0xFF1E2124);
 
-  int totalSeconds = 1500; // 총시간
+  static const initSeconds = 1500;
+
+  int totalSeconds = 0; // 총시간
+  int currentMin = 0;
+  int currentSec = 0;
   int totalPomodoro = 0;
   bool isRunning = false; // 돌아가는 중?
   late Timer timer;
 
+  String formatZero(int nMinSec) {
+    if (nMinSec < 10) {
+      return '0$nMinSec';
+    } else {
+      return '$nMinSec';
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    reset(isEnd: false);
+    // reset(false);
+  }
+
+  void reset({required bool isEnd}) {
+    totalSeconds = initSeconds;
+    calMinSec();
+
+    if (isEnd) {
+      onPausePressed();
+    }
+  }
+
+  void calMinSec() {
+    currentMin = totalSeconds ~/ 60;
+    currentSec = (totalSeconds % 60).toInt();
+  }
+
   void onTick(Timer timer) {
+    if (totalSeconds <= 0) {
+      reset(isEnd: true);
+      totalPomodoro += 1;
+
+      return;
+    }
+
     setState(() {
       totalSeconds -= 1;
+
+      calMinSec();
     });
   }
 
@@ -45,11 +88,7 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   }
 
   void onReset() {
-    timer.cancel();
-    setState(() {
-      isRunning = false;
-      totalSeconds = 1500;
-    });
+    reset(isEnd: true);
   }
 
   @override
@@ -61,31 +100,48 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
           Flexible(
             flex: 1,
             child: Container(
+              color: _mainBlackColor,
               alignment: Alignment.bottomCenter,
               child: Text(
-                '$totalSeconds',
+                '${formatZero(currentMin)}:${formatZero(currentSec)}',
                 style: TextStyle(
-                  color: _cardColor,
-                  fontSize: 89,
+                  color: _backgroundColor,
+                  fontSize: 65,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
           ),
           Flexible(
-            flex: 2,
-            child: Container(
-              alignment: Alignment.center,
-              child: IconButton(
-                iconSize: 120,
-                icon: Icon(
-                  isRunning
-                      ? Icons.pause_circle_filled_outlined
-                      : Icons.play_circle_outline_outlined,
-                  color: _cardColor,
+            flex: 3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Transform.translate(
+                  offset: const Offset(0, 25),
+                  child: IconButton(
+                    iconSize: 110,
+                    icon: Icon(
+                      isRunning
+                          ? Icons.pause_circle_outline_outlined
+                          : Icons.play_circle_outline_outlined,
+                      color: _mainBlackColor,
+                    ),
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
+                  ),
                 ),
-                onPressed: isRunning ? onPausePressed : onStartPressed,
-              ),
+                Transform.translate(
+                  offset: const Offset(0, 25),
+                  child: IconButton(
+                    iconSize: 30,
+                    icon: Icon(
+                      Icons.restore,
+                      color: _mainBlackColor,
+                    ),
+                    onPressed: onReset,
+                  ),
+                ),
+              ],
             ),
           ),
           Flexible(
@@ -94,45 +150,30 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
               children: [
                 Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: _cardColor,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
+                    color: _mainBlackColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        isRunning
-                            ? IconButton(
-                                onPressed: onReset,
-                                iconSize: 50,
-                                icon: Icon(
-                                  Icons.restore,
-                                  color: _textHeadline1,
-                                ),
-                              )
-                            : Column(
-                                children: [
-                                  Text(
-                                    'Pomodoro',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                      color: _textHeadline1,
-                                    ),
-                                  ),
-                                  Text(
-                                    '$totalPomodoro',
-                                    style: TextStyle(
-                                      fontSize: 48,
-                                      fontWeight: FontWeight.w600,
-                                      color: _textHeadline1,
-                                    ),
-                                  ),
-                                ],
-                              )
+                        Column(
+                          children: [
+                            Text(
+                              'Pomodoro',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: _backgroundColor,
+                              ),
+                            ),
+                            Text(
+                              '$totalPomodoro',
+                              style: TextStyle(
+                                fontSize: 48,
+                                fontWeight: FontWeight.w600,
+                                color: _cardColor,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
