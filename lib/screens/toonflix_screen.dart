@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/services/api_service.dart';
 
 class ToonflixScreen extends StatefulWidget {
   const ToonflixScreen({super.key});
@@ -8,6 +9,13 @@ class ToonflixScreen extends StatefulWidget {
 }
 
 class _ToonflixScreenState extends State<ToonflixScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    ApiService().getTodaysToons();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
