@@ -52,12 +52,7 @@ A new Flutter project.
   - #0.4 review Pomodoro app
   - #0.5 Implement onReset, reset, formatZero
   - #5.3 Date Format
-
-  - <details>
-    <summary>#5.4 Code Challenge</summary>
-
-    <img src="https://user-images.githubusercontent.com/96044518/221882282-4b9fc0ff-1720-4114-bf2a-b9ce8d160085.png" width="300" height="600"> 
-   </details>
+  - #5.4 Code Challenge
     
   
   
