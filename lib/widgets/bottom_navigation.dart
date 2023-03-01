@@ -17,10 +17,6 @@ class BottomNavigation extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.wallet),
           label: 'Wallets',
         ),
@@ -29,9 +25,17 @@ class BottomNavigation extends StatelessWidget {
           label: 'Study',
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.timelapse_rounded),
           label: 'Pomodoro',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.receipt_long_outlined),
+          label: 'Toonflix',
+        )
       ],
       onTap: (index) => onSelectTab(
         TabItem.values[index],

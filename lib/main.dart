@@ -23,6 +23,7 @@ class App extends StatelessWidget {
           ),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          elevation: 1,
           backgroundColor: _commonBackgroundColor,
           unselectedItemColor: Colors.white,
           selectedItemColor: _commonFontColor,
@@ -51,10 +52,11 @@ class _RoutePageState extends State<RoutePage> {
   TabItem _currentTab = TabItem.home;
 
   final _navigatorKeys = {
-    TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.wallets: GlobalKey<NavigatorState>(),
     TabItem.study: GlobalKey<NavigatorState>(),
+    TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.pomodoro: GlobalKey<NavigatorState>(),
+    TabItem.toonflix: GlobalKey<NavigatorState>(),
   };
 
   void _selectTab(TabItem tabItem) {
@@ -91,10 +93,11 @@ class _RoutePageState extends State<RoutePage> {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            _buildOffstageNavigator(TabItem.home),
             _buildOffstageNavigator(TabItem.wallets),
             _buildOffstageNavigator(TabItem.study),
+            _buildOffstageNavigator(TabItem.home),
             _buildOffstageNavigator(TabItem.pomodoro),
+            _buildOffstageNavigator(TabItem.toonflix),
           ],
         ),
         bottomNavigationBar: BottomNavigation(
