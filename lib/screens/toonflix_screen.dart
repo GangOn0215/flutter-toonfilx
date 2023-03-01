@@ -2,46 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:toonflix/models/toonflix_model.dart';
 import 'package:toonflix/services/api_service.dart';
 
-class ToonflixScreen extends StatefulWidget {
-  const ToonflixScreen({super.key});
+class ToonflixScreen extends StatelessWidget {
+  ToonflixScreen({super.key});
 
-  @override
-  State<ToonflixScreen> createState() => _ToonflixScreenState();
-}
-
-class _ToonflixScreenState extends State<ToonflixScreen> {
-  List<ToonflixModel> toons = [];
-  bool isLoading = true;
-
-  void waitForWebToons() async {
-    toons = await ApiService.getTodaysToons();
-    isLoading = false;
-
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    waitForWebToons();
-  }
+  Future<List<ToonflixModel>> webtoon = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
-    print(toons);
-    print(isLoading);
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Toonflix',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
+        appBar: AppBar(
+          title: const Text(
+            'Toonflix',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
           ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-    );
+        body: FutureBuilder(
+          future: webtoon,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const Text('Yeap');
+            }
+
+            return const Text('Loading');
+          },
+        ));
   }
 }

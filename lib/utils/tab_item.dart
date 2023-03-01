@@ -30,5 +30,5 @@ Map<TabItem, Widget> tabScreen = {
   TabItem.study: const StudyScreen(),
   TabItem.home: const HomeScreen(),
   TabItem.pomodoro: const PomodoroScreen(),
-  TabItem.toonflix: const ToonflixScreen()
+  TabItem.toonflix: ToonflixScreen()
 };
