@@ -23,7 +23,18 @@ class ToonflixScreen extends StatelessWidget {
           future: webtoon,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const Text('Yeap');
+              return ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  var webtoonRow = snapshot.data![index];
+
+                  return Text(webtoonRow.title);
+                },
+                separatorBuilder: (context, index) => const SizedBox(
+                  width: 10,
+                ),
+              );
             }
 
             return const Text('Loading');
