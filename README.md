@@ -28,7 +28,12 @@ A new Flutter project.
   - #3.9 Code Challenge
   
 - 🌸 2023-02-25
-  - #0.0 [Clone Coding](https://github.com/GangOn0215/flutter-clone-coding.git)
+  - <details>
+    <summary>#0.0 Clone Coding (혼자 직접 만들어 봄)</summary>
+    (https://github.com/GangOn0215/flutter-clone-coding.git) <br>
+    <img src="https://user-images.githubusercontent.com/96044518/221884524-0f01270f-2bc5-442e-a0e5-dfbcf2dfcd7e.jpg" width="300" height="600"> 
+   </details>
+  
   
 - 🌸 2023-02-26
   - #0.1 bottomNavigationBar
@@ -37,8 +42,22 @@ A new Flutter project.
   - #4.3 BuildContext 
   - #4.4 Widget Lifecycle
   
-- 🌸 2023-02-26
+- 🌸 2023-02-27
   - #5.0 Pomodoro App User Interface
   - #5.1 Timer
   - #5.2 pause play
   - #0.3 Implement Reset Button, Function onResetPressed 
+  
+- 🌸 2023-02-28
+  - #0.4 review Pomodoro app
+  - #0.5 Implement onReset, reset, formatZero
+  - #5.3 Date Format
+
+  - <details>
+    <summary>#5.4 Code Challenge</summary>
+
+    <img src="https://user-images.githubusercontent.com/96044518/221882282-4b9fc0ff-1720-4114-bf2a-b9ce8d160085.png" width="300" height="600"> 
+   </details>
+    
+  
+  
