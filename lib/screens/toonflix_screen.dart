@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/models/toonflix_model.dart';
 import 'package:toonflix/services/api_service.dart';
+import 'package:toonflix/widgets/toonflix/toonflix_weight.dart';
 
 class ToonflixScreen extends StatelessWidget {
   ToonflixScreen({super.key});
@@ -42,42 +43,14 @@ class ToonflixScreen extends StatelessWidget {
 
   ListView makeList(AsyncSnapshot<List<ToonflixModel>> snapshot) {
     return ListView.separated(
+      physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       itemCount: snapshot.data!.length,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       itemBuilder: (context, index) {
         var webtoonRow = snapshot.data![index];
-
-        return Column(
-          children: [
-            Container(
-              width: 250,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  10,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 10,
-                    offset: const Offset(10, 10),
-                    color: Colors.black.withOpacity(0.3),
-                  ),
-                ],
-              ),
-              child: Image.network(webtoonRow.thumb),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              webtoonRow.title,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
+        return ToonflixWeight(
+          toonflixRow: webtoonRow,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(
