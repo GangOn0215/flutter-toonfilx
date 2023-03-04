@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:toonflix/models/toonflix_model.dart';
 
 class ToonflixDetailScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class ToonflixDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -44,12 +46,15 @@ class ToonflixDetailScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Image.network(
-                  toonflixRow.thumb,
-                  headers: const {
-                    "User-Agent":
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-                  },
+                child: Hero(
+                  tag: toonflixRow.id,
+                  child: Image.network(
+                    toonflixRow.thumb,
+                    headers: const {
+                      "User-Agent":
+                          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+                    },
+                  ),
                 ),
               ),
             ],

@@ -1,26 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:toonflix/models/toonflix_model.dart';
 import 'package:toonflix/screens/toonflix_detail_screen.dart';
 
 class ToonflixWeight extends StatelessWidget {
+  final heroController = HeroController();
   final ToonflixModel toonflixRow;
 
-  const ToonflixWeight({
+  ToonflixWeight({
     super.key,
     required this.toonflixRow,
   });
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2;
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => ToonflixDetailScreen(
+          PageRouteBuilder(
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              var begin = const Offset(0.0, 1.0);
+              var end = Offset.zero;
+              var curve = Curves.ease;
+              var tween = Tween(begin: begin, end: end).chain(
+                CurveTween(
+                  curve: curve,
+                ),
+              );
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: child,
+              );
+            },
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                ToonflixDetailScreen(
               toonflixRow: toonflixRow,
             ),
-            fullscreenDialog: true,
           ),
         );
       },
@@ -41,12 +63,15 @@ class ToonflixWeight extends StatelessWidget {
                 ),
               ],
             ),
-            child: Image.network(
-              toonflixRow.thumb,
-              headers: const {
-                "User-Agent":
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-              },
+            child: Hero(
+              tag: toonflixRow.id,
+              child: Image.network(
+                toonflixRow.thumb,
+                headers: const {
+                  "User-Agent":
+                      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+                },
+              ),
             ),
           ),
           const SizedBox(
