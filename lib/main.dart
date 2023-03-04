@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/utils/common.dart';
 import 'package:toonflix/utils/tab_item.dart';
 import 'package:toonflix/utils/tab_navigator.dart';
 import 'package:toonflix/widgets/bottom_navigation.dart';
@@ -8,34 +9,14 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  final _commonBackgroundColor = Colors.black.withOpacity(0.7);
-  final _commonFontColor = const Color(0xFFE75480);
+  final heroController = HeroController();
 
   App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            color: Colors.amber,
-          ),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          elevation: 1,
-          backgroundColor: _commonBackgroundColor,
-          unselectedItemColor: Colors.white,
-          selectedItemColor: _commonFontColor,
-        ),
-        appBarTheme: AppBarTheme(
-          backgroundColor: _commonBackgroundColor,
-          titleTextStyle: TextStyle(
-            color: _commonFontColor,
-            fontSize: 20,
-          ),
-        ),
-      ),
+      theme: commonThemeData(),
       home: const RoutePage(),
     );
   }
