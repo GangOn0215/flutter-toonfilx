@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/models/toonflix_model.dart';
 import 'package:toonflix/services/api_service.dart';
+import 'package:toonflix/utils/common.dart';
 import 'package:toonflix/widgets/toonflix/toonflix_weight.dart';
 
 class ToonflixScreen extends StatelessWidget {
@@ -10,33 +11,36 @@ class ToonflixScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Toonflix',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
+    return MaterialApp(
+      theme: commonThemeData(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Toonflix',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
           ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: FutureBuilder(
-        future: webtoon,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Expanded(child: makeList(snapshot))
-              ],
-            );
-            // return makeList(snapshot);
-          }
+        body: FutureBuilder(
+          future: webtoon,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(child: makeList(snapshot))
+                ],
+              );
+              // return makeList(snapshot);
+            }
 
-          return const Center(child: CircularProgressIndicator());
-        },
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }

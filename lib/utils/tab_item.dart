@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:toonflix/screens/home_screen.dart';
 import 'package:toonflix/screens/pomodoro_screen.dart';
 import 'package:toonflix/screens/study_screen.dart';
-import 'package:toonflix/screens/toonflix_screen.dart';
 import 'package:toonflix/screens/wallets_screen.dart';
+import 'package:toonflix/screens/toonflix_screen.dart';
 
 // https://suhwanc.tistory.com/200 창고
 
-enum TabItem { wallets, study, home, pomodoro, toonflix }
+enum TabItem { wallets, study, home, pomodoro, toonflix, hero }
 
 const Map<TabItem, String> tabName = {
   TabItem.wallets: 'wallets',
@@ -30,5 +30,5 @@ Map<TabItem, Widget> tabScreen = {
   TabItem.study: const StudyScreen(),
   TabItem.home: const HomeScreen(),
   TabItem.pomodoro: const PomodoroScreen(),
-  TabItem.toonflix: ToonflixScreen()
+  TabItem.toonflix: ToonflixScreen(),
 };
