@@ -35,7 +35,7 @@ class BottomNavigation extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.receipt_long_outlined),
           label: 'Toonflix',
-        )
+        ),
       ],
       onTap: (index) => onSelectTab(
         TabItem.values[index],
