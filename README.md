@@ -53,6 +53,6 @@ A new Flutter project.
   - #0.5 Implement onReset, reset, formatZero
   - #5.3 Date Format
   - #5.4 Code Challenge
-    
-  
-  
+
+- 🌸 2023-03-05
+  - #0.6 Toonflix 바닥부터 끝까지 직접 만들어봄
