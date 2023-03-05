@@ -54,5 +54,24 @@ A new Flutter project.
   - #5.3 Date Format
   - #5.4 Code Challenge
 
+- 🌸 2023-03-01
+  - #0.4 Route Toonflix mapping, modify Home location
+  - #6.3 fromJson
+  - #6.5 waitForWebToons
+  - #6.6 FutureBuilder
+  - #6.7 ListView 
+
+- 🌸 2023-03-02
+  - #6.8 Webtoon Card
+  
+- 🌸 2023-03-03
+  - #6.9 Detail Screen
+
+- 🌸 2023-03-04
+  - 1. modularization study screen 
+  - 2. Hero 테스트 추가
+  - 3. 자주 사용하는 함수를 /utils/common.dart를 만들어 관리
+  - 웹툰 Hero 버그 수정
+  
 - 🌸 2023-03-05
-  - #0.6 Toonflix 바닥부터 끝까지 직접 만들어봄
+  - #0.6 Toonflix 바닥부터 끝까지 직접 만들어보기 ( 곧 github에 올릴 예정 )
