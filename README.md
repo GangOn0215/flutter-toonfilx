@@ -75,3 +75,10 @@ A new Flutter project.
   
 - 🌸 2023-03-05
   - #0.6 Toonflix 바닥부터 끝까지 직접 만들어보기 ( 곧 github에 올릴 예정 )
+  
+- 🌸 2023-03-06
+  - #6.12 ApiService
+  - #6.13 Futures
+  - #6.14 Detail Info
+  - #6.15 Episodes
+  - #6.16 Url Luncher
