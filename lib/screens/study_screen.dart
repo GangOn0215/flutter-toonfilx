@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toonflix/screens/study/Hero_screen.dart';
+import 'package:toonflix/screens/study/hero_screen.dart';
 import 'package:toonflix/screens/study/build_context_screen.dart';
 import 'package:toonflix/screens/study/state_screen.dart';
 import 'package:toonflix/screens/study/widget_lifecycle_screen.dart';

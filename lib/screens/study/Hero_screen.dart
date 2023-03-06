@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toonflix/screens/study/Hero_page_screen.dart';
+import 'package:toonflix/screens/study/hero_page_screen.dart';
 import 'package:toonflix/utils/common.dart';
 
 class HeroScreen extends StatelessWidget {

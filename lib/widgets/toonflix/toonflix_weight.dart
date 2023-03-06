@@ -4,10 +4,9 @@ import 'package:toonflix/models/toonflix_model.dart';
 import 'package:toonflix/screens/toonflix_detail_screen.dart';
 
 class ToonflixWeight extends StatelessWidget {
-  final heroController = HeroController();
   final ToonflixModel toonflixRow;
 
-  ToonflixWeight({
+  const ToonflixWeight({
     super.key,
     required this.toonflixRow,
   });
