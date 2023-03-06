@@ -68,9 +68,9 @@ A new Flutter project.
   - #6.9 Detail Screen
 
 - 🌸 2023-03-04
-  - 1. modularization study screen 
-  - 2. Hero 테스트 추가
-  - 3. 자주 사용하는 함수를 /utils/common.dart를 만들어 관리
+  - modularization study screen 
+  - flutter implement hero screen
+  - 자주 사용하는 함수를 /utils/common.dart를 만들어 관리
   - 웹툰 Hero 버그 수정
   
 - 🌸 2023-03-05
