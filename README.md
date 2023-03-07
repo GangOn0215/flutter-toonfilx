@@ -82,3 +82,6 @@ A new Flutter project.
   - #6.14 Detail Info
   - #6.15 Episodes
   - #6.16 Url Luncher
+
+- 🌸 2023-03-07
+  - #6.17 Favorites
