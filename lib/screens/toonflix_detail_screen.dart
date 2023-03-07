@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toonflix/models/toonflix_detail_model.dart';
 import 'package:toonflix/models/toonflix_episode_model.dart';
 import 'package:toonflix/models/toonflix_model.dart';
@@ -22,6 +23,42 @@ class ToonflixDetailScreen extends StatefulWidget {
 class _ToonflixDetailScreenState extends State<ToonflixDetailScreen> {
   late Future<ToonflixDetailModel> toonflixDetail;
   late Future<List<ToonflixEpisodeModel>> toonflixEpisodeList;
+  late SharedPreferences prefs;
+
+  bool isFavorite = false;
+
+  void onClick() async {
+    final likedToons = prefs.getStringList('likedToons');
+
+    if (likedToons != null) {
+      if (isFavorite) {
+        likedToons.remove(widget.toonflixRow.id);
+      } else {
+        likedToons.add(widget.toonflixRow.id);
+      }
+
+      await prefs.setStringList('likedToons', likedToons);
+
+      setState(() {
+        isFavorite = !isFavorite;
+      });
+    }
+  }
+
+  Future initPref() async {
+    prefs = await SharedPreferences.getInstance();
+    final likedToons = prefs.getStringList('likedToons');
+
+    if (likedToons == null) {
+      await prefs.setStringList('likedToons', []);
+    } else {
+      if (likedToons.contains(widget.toonflixRow.id) == true) {
+        setState(() {
+          isFavorite = true;
+        });
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -29,6 +66,8 @@ class _ToonflixDetailScreenState extends State<ToonflixDetailScreen> {
 
     toonflixDetail = ApiService.getToonflixDetail(widget.toonflixRow.id);
     toonflixEpisodeList = ApiService.getToonflixEpisode(widget.toonflixRow.id);
+
+    initPref();
   }
 
   @override
@@ -42,6 +81,16 @@ class _ToonflixDetailScreenState extends State<ToonflixDetailScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: onClick,
+            icon: Icon(
+              isFavorite
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border_rounded,
+            ),
+          )
+        ],
         centerTitle: true,
       ),
       body: SingleChildScrollView(
